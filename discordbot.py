@@ -9,13 +9,13 @@ token = os.environ['DISCORD_BOT_TOKEN']
 if not discord.opus.is_loaded():
     discord.opus.load_opus("heroku-buildpack-libopus")
 
-@bot.command(aliases=["connect","summon"]) #connect‚âsummon‚Å‚àŒÄ‚Ño‚¹‚é
+@bot.command(aliases=["connect","summon"]) #connectã‚„summonã§ã‚‚å‘¼ã³å‡ºã›ã‚‹
 async def join(ctx):
-    """Bot‚ğƒ{ƒCƒXƒ`ƒƒƒ“ƒlƒ‹‚É“üº‚³‚¹‚Ü‚·B"""
+    """Botã‚’ãƒœã‚¤ã‚¹ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤ã•ã›ã¾ã™ã€‚"""
     voice_state = ctx.author.voice
 
     if (not voice_state) or (not voice_state.channel):
-        await ctx.send("æ‚Éƒ{ƒCƒXƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B")
+        await ctx.send("å…ˆã«ãƒœã‚¤ã‚¹ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚")
         return
 
     channel = voice_state.channel
@@ -26,28 +26,28 @@ async def join(ctx):
 
 @bot.command(aliases=["disconnect","bye"])
 async def leave(ctx):
-    """Bot‚ğƒ{ƒCƒXƒ`ƒƒƒ“ƒlƒ‹‚©‚çØ’f‚µ‚Ü‚·B"""
+    """Botã‚’ãƒœã‚¤ã‚¹ãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰åˆ‡æ–­ã—ã¾ã™ã€‚"""
     voice_client = ctx.message.guild.voice_client
 
     if not voice_client:
-        await ctx.send("Bot‚Í‚±‚ÌƒT[ƒo[‚Ìƒ{ƒCƒXƒ`ƒƒƒ“ƒlƒ‹‚ÉQ‰Á‚µ‚Ä‚¢‚Ü‚¹‚ñB")
+        await ctx.send("Botã¯ã“ã®ã‚µãƒ¼ãƒãƒ¼ã®ãƒœã‚¤ã‚¹ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã¾ã›ã‚“ã€‚")
         return
 
     await voice_client.disconnect()
-    await ctx.send("ƒ{ƒCƒXƒ`ƒƒƒ“ƒlƒ‹‚©‚çØ’f‚µ‚Ü‚µ‚½B")
+    await ctx.send("ãƒœã‚¤ã‚¹ãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰åˆ‡æ–­ã—ã¾ã—ãŸã€‚")
 
 
 @bot.command()
 async def play(ctx):
-    """w’è‚³‚ê‚½‰¹ºƒtƒ@ƒCƒ‹‚ğ—¬‚µ‚Ü‚·B"""
+    """æŒ‡å®šã•ã‚ŒãŸéŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æµã—ã¾ã™ã€‚"""
     voice_client = ctx.message.guild.voice_client
 
     if not voice_client:
-        await ctx.send("Bot‚Í‚±‚ÌƒT[ƒo[‚Ìƒ{ƒCƒXƒ`ƒƒƒ“ƒlƒ‹‚ÉQ‰Á‚µ‚Ä‚¢‚Ü‚¹‚ñB")
+        await ctx.send("Botã¯ã“ã®ã‚µãƒ¼ãƒãƒ¼ã®ãƒœã‚¤ã‚¹ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã¾ã›ã‚“ã€‚")
         return
 
     if not ctx.message.attachments:
-        await ctx.send("ƒtƒ@ƒCƒ‹‚ª“Y•t‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB")
+        await ctx.send("ãƒ•ã‚¡ã‚¤ãƒ«ãŒæ·»ä»˜ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚")
         return
 
     await ctx.message.attachments[0].save("tmp.mp3")
@@ -55,6 +55,6 @@ async def play(ctx):
     ffmpeg_audio_source = discord.FFmpegPCMAudio("tmp.mp3")
     voice_client.play(ffmpeg_audio_source)
 
-    await ctx.send("Ä¶‚µ‚Ü‚µ‚½B")
+    await ctx.send("å†ç”Ÿã—ã¾ã—ãŸã€‚")
 
 bot.run(token)
