@@ -9,7 +9,7 @@ token = os.environ['DISCORD_BOT_TOKEN']
 #if not discord.opus.is_loaded():
     #discord.opus.load_opus("heroku-buildpack-libopus")
     
-@client.event
+@bot.event
 async def on_ready():
     print('ready')
     if not discord.opus.is_loaded():
