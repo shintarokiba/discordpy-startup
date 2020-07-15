@@ -18,11 +18,11 @@ async def on_ready():
 
 @bot.command(aliases=["connect","summon"]) #connectやsummonでも呼び出せる
 async def join(ctx):
-    """Botをボイスチャンネルに入室させます。"""
+    """Botをボイスチャンネルに入室させます。むんっ"""
     voice_state = ctx.author.voice
 
     if (not voice_state) or (not voice_state.channel):
-        await ctx.send("先にボイスチャンネルに入っている必要があります。")
+        await ctx.send("ほわっ、先にボイスチャンネルに入っている必要があります。")
         return
 
     channel = voice_state.channel
@@ -33,28 +33,28 @@ async def join(ctx):
 
 @bot.command(aliases=["disconnect","bye"])
 async def leave(ctx):
-    """Botをボイスチャンネルから切断します。"""
+    """ボイスチャンネルから切断します。ほわぁ…"""
     voice_client = ctx.message.guild.voice_client
 
     if not voice_client:
-        await ctx.send("Botはこのサーバーのボイスチャンネルに参加していません。")
+        await ctx.send("ほわっ、私はこのサーバーのボイスチャンネルに参加していません…")
         return
 
     await voice_client.disconnect()
-    await ctx.send("ボイスチャンネルから切断しました。")
+    await ctx.send("ボイスチャンネルから切断しました。むんっ")
 
 
 @bot.command()
 async def play(ctx):
-    """指定された音声ファイルを流します。"""
+    """音声ファイルをアップロードしてメッセージを「$play」にすれば、それを喋ります。むんっ"""
     voice_client = ctx.message.guild.voice_client
 
     if not voice_client:
-        await ctx.send("Botはこのサーバーのボイスチャンネルに参加していません。")
+        await ctx.send("ほわっ、私はこのサーバーのボイスチャンネルに参加していません…")
         return
 
     if not ctx.message.attachments:
-        await ctx.send("ファイルが添付されていません。")
+        await ctx.send("ほわっ、音声ファイルが添付されていません…")
         return
 
     await ctx.message.attachments[0].save("tmp.mp3")
@@ -62,6 +62,6 @@ async def play(ctx):
     ffmpeg_audio_source = discord.FFmpegPCMAudio("tmp.mp3")
     voice_client.play(ffmpeg_audio_source)
 
-    await ctx.send("再生しました。")
+    await ctx.send("再生しました。むんっ")
 
 bot.run(token)
